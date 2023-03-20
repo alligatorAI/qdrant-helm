@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: qdrant/qdrant
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: v1.0.3
 
 imagePullSecrets: []
 nameOverride: ""
@@ -58,15 +58,17 @@ startupProbe:
 podAnnotations: {}
 podLabels: {}
 
-resources: {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 2
+    memory: 8Gi
+  requests:
+    cpu: 200m
+    memory: 1Gi
 
-nodeSelector: {}
+nodeSelector:
+  cloud.google.com/compute-class: Scale-Out
+  kubernetes.io/arch: arm64
 
 tolerations: []
 
